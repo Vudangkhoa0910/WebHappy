@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lì xì cho người yêu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chúc Mừng Năm Mới! Nhận lì xì nào!</h1>
+        <form id="giftForm">
+            <label for="name">Tên của bạn:</label>
+            <input type="text" id="name" placeholder="Nhập tên" required>
+
+            <label for="bankAccount">Số tài khoản ngân hàng:</label>
+            <input type="text" id="bankAccount" placeholder="Nhập số tài khoản" required>
+
+            <label for="bankName">Tên ngân hàng:</label>
+            <input type="text" id="bankName" placeholder="Nhập tên ngân hàng" required>
+
+            <button type="submit">Gửi thông tin</button>
+        </form>
+        <p id="status"></p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
