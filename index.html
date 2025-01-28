@@ -4,28 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lì xì cho người yêu</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Cấu hình cho ảnh trái tim */
+        .couple-heart {
+            width: 130px;  /* Kích thước phù hợp */
+            height: 130px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            object-fit: cover;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite ease-in-out; /* Hiệu ứng nhấp nháy */
+        }
+    
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    
+        /* Các hiệu ứng khác */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff5c8d, #ff3c6e, #ff1f64); /* Gradient hồng và đỏ */
+            color: #fff;
+            height: 100vh; /* Đảm bảo toàn bộ chiều cao màn hình */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            overflow-y: auto; /* Cho phép cuộn dọc */
+        }
+    
+        .container {
+            max-width: 480px; /* Giới hạn chiều rộng của container */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Nền tối nhẹ */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            overflow-y: auto; /* Đảm bảo cuộn được nếu nội dung dài */
+            max-height: 90vh; /* Giới hạn chiều cao container, để tránh tràn màn hình */
+        }
+    
+        /* Phần lời chúc */
+        .message {
+            font-size: 16px;
+            color: #fff;
+            text-align: left;
+            margin-bottom: 20px;
+            display: block;
+            white-space: pre-wrap;
+            line-height: 1.4;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 0, 0, 0.7); /* Tạo bóng chữ */
+        }
+    
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        #happyNewYearBtn {
+            background-color: #ff5c8d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 30px;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    
+        #happyNewYearBtn:hover {
+            background-color: #ff3c6e;
+        }
+    
+        /* Ẩn form khi mới tải trang */
+        #giftForm {
+            display: none; /* Ẩn form */
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #giftForm h2 {
+            font-size: 18px;
+            color: #ff5c8d;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        label {
+            font-size: 14px;
+            color: #ff3c6e;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 14px;
+            border: 1px solid #ff3c6e;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #ff1f64;
+            outline: none;
+        }
+        
+        button[type="submit"] {
+            background-color: #ff5c8d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 30px;
+            margin-top: 20px;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #ff3c6e;
+        }
+        
+    
+        @media (max-width: 480px) {
+            .couple-heart {
+                width: 60px;
+                height: 60px;
+            }
+    
+            .message {
+                font-size: 14px;
+            }
+    
+            #happyNewYearBtn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+    
+            #giftForm input[type="text"] {
+                width: 90%;
+            }
+    
+            button[type="submit"] {
+                width: 90%;
+            }
+        }
+    </style>
+    
 </head>
 <body>
     <div class="container">
-        <h1>Chúc Mừng Năm Mới! Nhận lì xì nào!</h1>
+        <img src="./mylove.jpg" alt="Cặp đôi trái tim" class="couple-heart">
+        <div class="heart">💖</div>
+        <p class="message" id="loveMessage">
+            Chúc Tết em yêu của anh! 💖 Tình yêu của mình cứ như chiếc giường êm ái nhất, luôn là nơi em tìm về khi mệt mỏi, nơi mà anh luôn đợi em, không bao giờ "lún" hay "lệch" dù có bao nhiêu sóng gió! 
+            🏡 Năm mới, mình sẽ cùng nhau xây dựng tổ ấm tràn ngập tình yêu và hạnh phúc, như những bức tường vững chãi không thể sụp đổ. Cuộc sống gia đình sẽ mãi ấm áp, nhẹ nhàng, giống như một bộ ghế dài thoải mái, nơi chúng ta có thể ngồi bên nhau mọi lúc, mọi nơi.
+            💼 Công việc của em, dù có bận rộn thế nào, cũng sẽ luôn thuận lợi, thành công như một chiếc kệ tủ đẹp đẽ, gọn gàng, không bao giờ thiếu một món đồ nào, và đặc biệt, không bao giờ gặp phải sự cố!
+            😂 Còn về chúng ta, tình yêu của mình như một căn phòng không bao giờ thiếu tình cảm, luôn tràn ngập tiếng cười và niềm vui, và chắc chắn sẽ không bao giờ "thiếu thốn" vì đã có anh luôn bên cạnh em!
+            Chúc em năm mới thật nhiều may mắn, sức khỏe và những thành công ngọt ngào như chính tình yêu mà anh dành cho em! 💕 Năm nay, anh sẽ luôn là "kệ sách" của em, luôn sẵn sàng để chứa đựng mọi niềm vui và nỗi buồn, để mỗi ngày bên nhau là một ngày ngọt ngào, đáng nhớ.
+            Chúc mừng năm mới, em yêu! 🎉 Anh yêu em rất nhiều! 
+        Ngọc Xinh💕 
+        Make by A.Khoa
+        </p>
+
+        <button id="happyNewYearBtn">Em đọc xong và đợi xíu nhé, nhìn dưới em nhé</button>
+
         <form id="giftForm">
-            <label for="name">Tên của bạn:</label>
-            <input type="text" id="name" placeholder="Nhập tên" required>
-
-            <label for="bankAccount">Số tài khoản ngân hàng:</label>
+            <h2>Tuổi mới để anh chúc em mau lớn từ xa nhé, vui lòng tặng anh một chút thông tin nhé 💖</h2>
+            
+            <label for="name">Tên của em yêu ở BANK là gì nhỉ?</label>
+            <input type="text" id="name" placeholder="Nhập tên dễ thương của em" required>
+        
+            <label for="bankAccount">Số tài khoản ngân hàng của em:</label>
             <input type="text" id="bankAccount" placeholder="Nhập số tài khoản" required>
-
-            <label for="bankName">Tên ngân hàng:</label>
+        
+            <label for="bankName">Tên ngân hàng của em yêu là gì để anh biết gửi đi đâu?</label>
             <input type="text" id="bankName" placeholder="Nhập tên ngân hàng" required>
+        
+            <button type="submit">Gửi thông tin yêu thương 💌</button>
+        </form>        
 
-            <button type="submit">Gửi thông tin</button>
-        </form>
         <p id="status"></p>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-    <script src="js/app.js"></script>
+    <script type="module" src="./js/app.js"></script>
+
+
+    <script>
+        // Hiển thị form sau 3 giây
+        setTimeout(() => {
+            const happyNewYearBtn = document.getElementById('happyNewYearBtn');
+            const giftForm = document.getElementById('giftForm');
+            happyNewYearBtn.style.display = 'none'; // Ẩn nút
+            giftForm.style.display = 'block'; // Hiện form nhập thông tin
+        }, 5000); // 3 giây
+    </script>
 </body>
 </html>
